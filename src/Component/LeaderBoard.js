@@ -9,7 +9,9 @@ function LeaderBoard({ sortItem }) {
     sortedList =
       sortItem === "name"
         ? responseList.sort((a, b) => (a.name > b.name ? 1 : -1))
-        : responseList.sort((a, b) => a[sortItem] - b[sortItem]);
+        : responseList.sort(
+            (a, b) => Number(a[sortItem]) - Number(b[sortItem])
+          );
     return sortedList;
   });
 
@@ -19,7 +21,7 @@ function LeaderBoard({ sortItem }) {
     sortedList =
       sort === "name"
         ? responseList.sort((a, b) => (a.name > b.name ? 1 : -1))
-        : responseList.sort((a, b) => a[sort] - b[sort]);
+        : responseList.sort((a, b) => Number(a[sort]) - Number(b[sort]));
     setList(sortedList);
   };
 
