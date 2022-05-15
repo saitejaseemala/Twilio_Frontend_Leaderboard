@@ -1,3 +1,13 @@
 a:hover {
   text-decoration: none;
 }
+
+button:focus {
+  color: white !important;
+  background-color: #1ba94c !important;
+}
+
+button:hover {
+  color: white !important;
+  background-color: #1ba94c !important;
+}

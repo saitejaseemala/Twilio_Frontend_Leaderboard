@@ -7,6 +7,7 @@ function LeaderBoard() {
   let { sortItem } = useParams();
   if (!sortItem) sortItem = "rank";
   const [list, setList] = useState([]);
+  const [color, setColor] = useState("hackerrank-primary");
   console.log("item", sortItem);
 
   useEffect(() => {
@@ -24,11 +25,7 @@ function LeaderBoard() {
       <div>
         <div>
           <Link to="/rank">
-            <button
-              data-testid="route-rank"
-              className={`outlined`}
-              type="button"
-            >
+            <button data-testid="route-rank" className="outlined" type="button">
               Rank
             </button>
           </Link>
