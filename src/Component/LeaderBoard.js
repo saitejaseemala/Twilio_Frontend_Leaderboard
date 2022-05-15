@@ -1,32 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { response } from "../response";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function LeaderBoard({ sortItem }) {
+function LeaderBoard() {
   const responseList = response.list;
-  const [list, setList] = useState(() => {
+  let { sortItem } = useParams();
+  if (!sortItem) sortItem = "rank";
+  const [list, setList] = useState([]);
+  console.log("item", sortItem);
+
+  useEffect(() => {
+    console.log(sortItem);
     let sortedList;
     sortedList =
       sortItem === "name"
-        ? responseList.sort((a, b) => (a.name > b.name ? 1 : -1))
-        : responseList.sort(
-            (a, b) => Number(a[sortItem]) - Number(b[sortItem])
-          );
-    return sortedList;
-  });
-
-  const sortHandler = (e, sort) => {
-    let sortedList;
-
-    sortedList =
-      sort === "name"
-        ? responseList.sort((a, b) => (a.name > b.name ? 1 : -1))
-        : responseList.sort((a, b) => Number(a[sort]) - Number(b[sort]));
+        ? [...responseList].sort((a, b) => (a.name > b.name ? 1 : -1))
+        : [...responseList].sort((a, b) => a[sortItem] - b[sortItem]);
     setList(sortedList);
-  };
+  }, [sortItem, responseList]);
 
   return (
     <div className="text-center mt-50">
+      {console.log("render", list)}
       <div>
         <div>
           <Link to="/rank">
@@ -34,22 +29,12 @@ function LeaderBoard({ sortItem }) {
               data-testid="route-rank"
               className={`outlined`}
               type="button"
-              onClick={(e) => {
-                sortHandler(e, "rank");
-              }}
             >
               Rank
             </button>
           </Link>
           <Link to="/name">
-            <button
-              data-testid="route-name"
-              className="outlined"
-              type="button"
-              onClick={(e) => {
-                sortHandler(e, "name");
-              }}
-            >
+            <button data-testid="route-name" className="outlined" type="button">
               Name
             </button>
           </Link>
@@ -58,22 +43,12 @@ function LeaderBoard({ sortItem }) {
               data-testid="route-points"
               className="outlined"
               type="button"
-              onClick={(e) => {
-                sortHandler(e, "points");
-              }}
             >
               Points
             </button>
           </Link>
           <Link to="/age">
-            <button
-              data-testid="route-age"
-              className="outlined"
-              type="button"
-              onClick={(e) => {
-                sortHandler(e, "age");
-              }}
-            >
+            <button data-testid="route-age" className="outlined" type="button">
               Age
             </button>
           </Link>

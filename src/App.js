@@ -13,19 +13,10 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact>
-            <LeaderBoard sortItem="rank" />
+            <LeaderBoard />
           </Route>
-          <Route path="/rank" exact>
-            <LeaderBoard sortItem="rank" />
-          </Route>
-          <Route path="/points" exact>
-            <LeaderBoard sortItem="points" />
-          </Route>
-          <Route path="/name" exact>
-            <LeaderBoard sortItem="name" />
-          </Route>
-          <Route path="/age" exact>
-            <LeaderBoard sortItem="age" />
+          <Route path="/:sortItem">
+            <LeaderBoard />
           </Route>
         </Switch>
       </Router>
