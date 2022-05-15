@@ -7,7 +7,6 @@ function LeaderBoard() {
   let { sortItem } = useParams();
   if (!sortItem) sortItem = "rank";
   const [list, setList] = useState([]);
-  const [color, setColor] = useState("hackerrank-primary");
   console.log("item", sortItem);
 
   useEffect(() => {
