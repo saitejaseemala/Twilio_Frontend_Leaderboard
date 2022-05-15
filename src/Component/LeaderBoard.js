@@ -10,7 +10,6 @@ function LeaderBoard() {
   console.log("item", sortItem);
 
   useEffect(() => {
-    console.log(sortItem);
     let sortedList;
     sortedList =
       sortItem === "name"
